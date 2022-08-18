@@ -1,17 +1,9 @@
 version: "3"
 services:
     db:
-        container_name: mysql_db
-        image: mysql:8.0
-        platform: linux/amd64
-        # Port mapping - localhost port : mysql default port
+        container_name: my_first_dockerized_db
+        image: postgres:14-alpine
         ports:
-            - "32003:3306"
+            - "32007:3306"
         environment:
-            # Password for mysql root
-            MYSQL_ROOT_PASSWORD: thisisasecret
-            # Creates a default database called "olist"
-            MYSQL_DATABASE: olist
-        # Mounted volume of our dataset files onto --secure-file-priv location
-        volumes:
-            - ./olist_dataset/:/var/lib/mysql-files/
+            - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
