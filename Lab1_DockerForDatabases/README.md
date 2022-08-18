@@ -1,5 +1,7 @@
 # Lab 1: Docker for Databases
 
+The objective of this laboratory is for you to understand how to run a PostgreSQL database within a docker container. 
+
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
 * [Install pgAdmin](https://www.pgadmin.org/download/)
@@ -10,7 +12,7 @@
 
 ### What You Will Learn
 You'll learn how to:
-* Read a docker-compose.yml file with a database service 
+* Read a docker-compose.yml file 
 * Create a postgres database in a docker container
 * Connect to PostgreSQL database running inside the container using a client (pgAdmin)
 * Connect to PostgreSQL database running inside the container using the command line 
@@ -35,11 +37,11 @@ services:
 
 There are multiple clauses and keywords within this file: 
 * `version`: This specifies the version of docker compose, in this case we are using version 3, and Docker will provide the appropriate features for this version. 
-* `services`: This section defines all the containers that can be created, in this lab we will only have one database service.
-* `container_name`: specifies a custom container name, rather than a generated default name
+* `services`: This section defines all the containers that can be created. Each service represents a container that will have its own name and configuration.
+* `container_name`: specifies a custom container name, rather than a generated default name.
 * `image`: Is used to mention the image name from which container will spin-up from. Image can be in the local system or hosted on some remote repository. 
-* `ports`: This is used to map the container’s ports to the host machine `host port 32003: container port 5432`
-* `environment`: Defines the environment variables set in the container
+* `ports`: This is used to map the container’s ports to the host machine `host port 32003: container port 5432`.
+* `environment`: Defines the environment variables set in the container.
 
 > NOTE: **Why do we need port mapping?** 
 >
@@ -67,7 +69,7 @@ POSTGRES_PASSWORD=secret
 **docker-compose.yml** file: 
 
 ```shell script
-POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+"POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
 ```
 
 ### Docker Compose commands
