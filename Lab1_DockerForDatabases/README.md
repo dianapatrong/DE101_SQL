@@ -74,17 +74,17 @@ POSTGRES_PASSWORD=secret
 
 ### Docker Compose commands
 
-`docker-compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
+`docker compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
 It builds the images if they are not located locally and starts the containers.
 
-`docker-compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
+`docker compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
 
 ### Running docker compose 
 
 Now that we are all set, let's run our docker-compose file: 
 
 ```shell script
-$ docker-compose up
+$ docker compose up
 ```
 
 Open another terminal window and make sure your container is running: 
@@ -92,7 +92,7 @@ Open another terminal window and make sure your container is running:
 ```shell script
 $ docker-compose ps
 NAME                     COMMAND                  SERVICE             STATUS              PORTS
-my_first_dockerized_db   "docker-entrypoint.s…"   db                  running             5432/tcp, 0.0.0.0:32007->3306/tcp
+my_first_dockerized_db   "docker-entrypoint.s…"   db                  running             5432/tcp, 0.0.0.0:32007->5432/tcp
 ```
 
 ### Connect to the PostgreSQL database
@@ -103,7 +103,7 @@ Now that our container is running, we will connect to the PostgreSQL instance.
 The following command lets you connect to the PostgreSQL CLI running inside the Docker container.
 
 ```
-$ docker-compose exec db bash
+$ docker compose exec db bash
 bash-5.1# 
 ```
 
