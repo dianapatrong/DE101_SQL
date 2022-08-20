@@ -1,9 +1,31 @@
 version: "3"
 services:
-    db:
-        container_name: my_first_dockerized_db
+    postgres:
+        container_name: postgres_db
         image: postgres:14-alpine
         ports:
-            - "32007:5432"
+            - "32001:5432"
         environment:
             - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+        volumes:
+            - "./databases/postgres_movies_database.sql:/docker-entrypoint-initdb.d/movies_database.sql"
+    mysql:
+        container_name: mysql_db
+        image: mysql:8.0
+        platform: linux/amd64
+        ports:
+            - "32002:3306"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+        volumes:
+            - "./databases/mysql_movies_database.sql:/docker-entrypoint-initdb.d/movies_database.sql"
+    webapp:
+        container_name: webapp
+        build: ./app
+        ports:
+            - "5000:5000"
+        depends_on:
+          - postgres
+          - mysql
+        environment:
+            - "MYSQL_URI=${MYSQL_URI}"
