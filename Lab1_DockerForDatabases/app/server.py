@@ -5,18 +5,18 @@ import os
 app = Flask(__name__)
 
 mysql_uri = os.environ["MYSQL_URI"]
-# postgres_uri = os.environ["POSTGRES_URI"]
+postgres_uri = os.environ["POSTGRES_URI"]
 
 
-def get_movies():
+def get_movies(db_uri):
     """
     Retrieves all movies from the database.
     """
     movies = []
 
-    engine = create_engine(mysql_uri).connect()
+    engine = create_engine(db_uri).connect()
 
-    for row in engine.execute("SELECT * FROM movies ORDER by rating DESC"):
+    for row in engine.execute("SELECT * FROM movie ORDER by rating DESC"):
         movies.append({"name": row[0], "rating": row[1]})
 
     return movies
@@ -37,7 +37,6 @@ def render_movie_li(movies):
                 %s
             </li>
         """ % (movie['rating'], movie['name'])
-
     return html
 
 
@@ -46,11 +45,13 @@ def index():
     """
     This method is called upon opening the webapp.
     """
-    movies = get_movies()
-    movies_li = render_movie_li(movies)
+    movies_mysql = get_movies(mysql_uri)
+    movies_postgres = get_movies(postgres_uri)
+    movies_mysql_li = render_movie_li(movies_mysql)
+    movies_postgres_li = render_movie_li(movies_postgres)
 
-    # Read the index.html and add the movies_li to it.
-    return open('index.html').read() % (movies_li)
+    # Read the index.html and add the movies rendered to it.
+    return open('index.html').read() % (movies_mysql_li, movies_postgres_li)
 
 
 if __name__ == "__main__":

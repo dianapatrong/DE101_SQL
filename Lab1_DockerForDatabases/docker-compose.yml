@@ -29,3 +29,4 @@ services:
           - mysql
         environment:
             - "MYSQL_URI=${MYSQL_URI}"
+            - "POSTGRES_URI=${POSTGRES_URI}"
