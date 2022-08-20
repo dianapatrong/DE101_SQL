@@ -43,11 +43,15 @@ def render_movie_li(movies):
 @app.route('/')
 def index():
     """
-    This method is called upon opening the webapp.
+    This method is called when opening the webapp.
     """
+
+    # Mysql
     movies_mysql = get_movies(mysql_uri)
-    movies_postgres = get_movies(postgres_uri)
     movies_mysql_li = render_movie_li(movies_mysql)
+
+    # Postgres
+    movies_postgres = get_movies(postgres_uri)
     movies_postgres_li = render_movie_li(movies_postgres)
 
     # Read the index.html and add the movies rendered to it.
