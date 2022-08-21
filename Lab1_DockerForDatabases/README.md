@@ -1,6 +1,13 @@
 # Lab 1: Docker for Databases
 
-The objective of this laboratory is for you to understand how to run a PostgreSQL database within a docker container. 
+In this laboratory we will run multiple containers using Docker Compose. We will have
+3 containers: 
+
+* PostgreSQL: Preloaded with movies information
+* MySQL: Preloaded with movies information
+* Python Web App 
+
+[Lab 1 Diagram](documentation_images/lab1_diagram.png)
 
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
@@ -13,15 +20,19 @@ The objective of this laboratory is for you to understand how to run a PostgreSQ
 ### What You Will Learn
 You'll learn how to:
 * Read a docker-compose.yml file 
+* Mount volumes and how data is persisted through them 
 * Create multiple databases in a docker container leveraging a docker-compose.yml file 
 * Connect to different databases running inside the container using a db client
-* Connect to different databases running inside the container using the command line 
+* Connect to different databases running inside the container using the command line
 
+ 
 ## Let's get started
 
 ### Docker Compose
 In this folder there's a pre-defined [`docker-compose.yml`](docker-compose.yml) file, let's walk through the file
 to make sure you understand it. 
+
+There are multiple clauses and keywords within this file: 
 
 ```dockerfile
 version: "3"
@@ -33,6 +44,8 @@ services:
             - "32001:5432"
         environment:
             - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+        volumes:
+            - "./databases/postgres_movies_database.sql:/docker-entrypoint-initdb.d/movies_database.sql"
     mysql:
         container_name: mysql_db
         image: mysql:8.0
@@ -40,18 +53,37 @@ services:
         ports:
             - "32002:3306"
         environment:
-            - "MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}"
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+        volumes:
+            - "./databases/mysql_movies_database.sql:/docker-entrypoint-initdb.d/movies_database.sql"
+    webapp:
+        container_name: webapp
+        build: ./app
+        ports:
+            - "5000:5000"
+        depends_on:
+          - postgres
+          - mysql
+        environment:
+            - "MYSQL_URI=${MYSQL_URI}"
+            - "POSTGRES_URI=${POSTGRES_URI}"
 ```
 
-There are multiple clauses and keywords within this file: 
 * `version`: This specifies the version of docker compose, in this case we are using version 3, and Docker will provide the appropriate features for this version. 
 * `services`: This section defines all the containers that can be created. Each service represents a container that will have its own name and configuration.
+    * In this definition we have 3 services `mysql`, `postgres` and `webapp`, this last one is build from [this Dockerfile](app/Dockerfile) definition and will only be used
+    for displaying results.  
 * `container_name`: specifies a custom container name, rather than a generated default name.
 * `image`: Is used to mention the image name from which container will spin-up from. Image can be in the local system or hosted on some remote repository. 
 * `ports`: This is used to map the container’s ports to the host machine `host port 32001: container port 5432`.
 * `environment`: Defines the environment variables set in the container.
+* `depends_on`: Express dependency between services. In this case `postgres` and `mysql` service are started before `webapp`.
+* `volume`: File system mounted on docker container. In this case we are loading the [databases/postgres_movies_database.sql](databases/postgres_movies_database.sql) file into
+the postgres database and [databases/mysql_movies_database.sql](databases/mysql_movies_database.sql) into the mysql database when the container starts.
 
-> NOTE: **Why do we need port mapping?** 
+
+> NOTES: 
+> **Why do we need port mapping?** 
 >
 > As a general rule, a port can only map to a single service or process on each host. 
 > Imagine that you have multiple PostgreSQL containers on a single host. By default, 
@@ -105,7 +137,17 @@ $ docker compose ps
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 mysql_db            "docker-entrypoint.s…"   mysql               running             33060/tcp, 0.0.0.0:32002->3306/tcp
 postgres_db         "docker-entrypoint.s…"   postgres            running             0.0.0.0:32001->5432/tcp
+webapp              "python server.py"       webapp              running             0.0.0.0:5000->5000/tcp
 ```
+
+### Explore the webapp
+
+Now that we have our containers running, if you go to [`http://localhost:5000/`](http://localhost:5000/) you should have something like the 
+following image: 
+
+[Wep app](documentation_images/webapp.png)
+
+In here, we can see two sections, both are lists of movies with their ratings but one is loaded in MySQL database and the other one in PostgreSQL database. 
 
 ### Connect to the PostgreSQL database
 Now that our container is running, we will connect to the PostgreSQL instance.
@@ -133,6 +175,7 @@ postgres=#
 * `-h`: You need to provide the hostname on which the PostgreSQL Docker container is running. 
 * `-u`: By default, the PostgreSQL image uses a username **postgres** that you can use to log in to the database.
 
+
 You can now run SQL queries against this database! 
 
 ### ✏️ Exercise 1: Connect to the MySQL instance using the CLI 
@@ -146,8 +189,33 @@ was set in the `.env` file.
 Now that you know how to connect using the CLI, try to do the same with the db client, remember to use the password that 
 was set in the `.env` file. 
 
-### ✏️ Exercise 4: Create a database
-Create a new database called `<First Name initial><Last Name>`, i.e. Harry Potter `hpotter`.
+### ✏️ Exercise 4: Insert some data into the databases: 
+Since we haven't seen DML statements, I'll give you the statements you will need to run, you may replace the names and ratings with your
+favorite or least favorite movies: 
+
+On MySQL:
+```
+INSERT INTO movie VALUES ("Harry Potter and the Goblet of Fire", 10.0);
+```
+
+On PostgreSQL:
+```
+INSERT INTO movie VALUES ('Twilight', 0.4);
+```
+
+**Questions**:
+
+* What happens in the UI when you refresh the page? 
+
+### ✏️ Exercise 5: Restart your containers
+Using the commands to stop and run Docker Compose, do it again to restart our containers. 
+
+**Questions**:
+
+* What happened to the data you inserted in Exercise 4? 
+* Why does it happen? 
+
+
 
 ### Stop your services! 
 Don't forget to stop your containers when you are done.
@@ -156,5 +224,5 @@ Don't forget to stop your containers when you are done.
 
 ERROR: 
 
-If you have an error "Publick Key Retrieval " with mysql , go to the driver properties and change the allowPublickKeyRetrieval to TRUE
+If you have an error "Publick Key Retrieval " with mysql , go to the driver properties and change the `allowPublickKeyRetrieval` to TRUE
 
