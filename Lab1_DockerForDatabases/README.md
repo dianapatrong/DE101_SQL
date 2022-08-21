@@ -78,7 +78,7 @@ services:
 * `ports`: This is used to map the container’s ports to the host machine `host port 32001: container port 5432`.
 * `environment`: Defines the environment variables set in the container.
 * `depends_on`: Express dependency between services. In this case `postgres` and `mysql` service are started before `webapp`.
-* `volume`: File system mounted on docker container. In this case we are loading the [databases/postgres_movies_database.sql](databases/postgres_movies_database.sql) file into
+* `volume`: File system mounted on docker container. In this case we are using a `bind mount` to copy the [databases/postgres_movies_database.sql](databases/postgres_movies_database.sql) file into
 the postgres database and [databases/mysql_movies_database.sql](databases/mysql_movies_database.sql) into the mysql database when the container starts.
 
 
@@ -215,14 +215,20 @@ Using the commands to stop and run Docker Compose, do it again to restart our co
 * What happened to the data you inserted in Exercise 4? 
 * Why does it happen? 
 
-
+### ✏️ Extra for nerds: Mount a volume for persisting the new data
+So now that you know why the newly inserted data is not available, you can redefine your `docker-compose.yml` file
+to persist the data inserted in Exercise 4. 
 
 ### Stop your services! 
 Don't forget to stop your containers when you are done.
 
+### Troubleshooting: 
+These are some of the most common errors that you can encounter, if you have and issue and feel like it should be added 
+to the list please share with the teacher(s).
 
+#### Error: Public Key Retrieval
+If you have this error with mysql, go to the driver properties and change the `allowPublickKeyRetrieval` to **true**.
 
-ERROR: 
+[Error: Mysql](documentation_images/error_mysql.png)
 
-If you have an error "Publick Key Retrieval " with mysql , go to the driver properties and change the `allowPublickKeyRetrieval` to TRUE
 

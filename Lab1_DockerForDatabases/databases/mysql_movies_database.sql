@@ -1,8 +1,8 @@
-CREATE DATABASE movies;
+CREATE DATABASE IF NOT EXISTS movies;
 
 USE movies;
 
-CREATE TABLE movie (
+CREATE TABLE IF NOT EXISTS movie (
   name   VARCHAR(255),
   rating DOUBLE
 );
