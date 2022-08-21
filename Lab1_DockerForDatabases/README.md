@@ -9,7 +9,7 @@ In this laboratory we will run multiple containers using Docker Compose. We will
 
 ![Lab 1 Diagram](documentation_images/lab1_diagram.png)
 
-### Prerequisites
+## Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
 * Install a db client (i.e. [DBeaver](https://dbeaver.io/download/)) 
 * Install docker compose (only if you are on Linux)
@@ -17,16 +17,15 @@ In this laboratory we will run multiple containers using Docker Compose. We will
 > NOTE: On desktop systems, such as Docker Desktop for Mac and Windows, docker compose is already included. 
 > No additional steps are needed. 
 
-### What You Will Learn
+## What You Will Learn
 You'll learn how to:
 * Read a docker-compose.yml file 
 * Mount volumes and how data is persisted through them 
 * Create multiple databases in a docker container leveraging a docker-compose.yml file 
-* Connect to different databases running inside the container using a db client
-* Connect to different databases running inside the container using the command line
-
+* Connect to different databases running inside the containers using a db client
+* Connect to different databases running inside the containers using the command line
  
-## Let's get started
+# Let's get started
 
 ### Docker Compose
 In this folder there's a pre-defined [`docker-compose.yml`](docker-compose.yml) file, let's walk through the file
@@ -70,15 +69,15 @@ services:
 ```
 
 * `version`: This specifies the version of docker compose, in this case we are using version 3, and Docker will provide the appropriate features for this version. 
-* `services`: This section defines all the containers that can be created. Each service represents a container that will have its own name and configuration.
-    * In this definition we have 3 services `mysql`, `postgres` and `webapp`, this last one is build from [this Dockerfile](app/Dockerfile) definition and will only be used
+* `services`: This section defines all the containers will be created. Each service represents a container that will have its own name and configuration.
+    * In this definition we have 3 services `mysql`, `postgres` and `webapp`; this last one is built from [this Dockerfile](app/Dockerfile) definition and will only be used
     for displaying results.  
-* `container_name`: specifies a custom container name, rather than a generated default name.
+* `container_name`: Specifies a custom container name, rather than a generated default name.
 * `image`: Is used to mention the image name from which container will spin-up from. Image can be in the local system or hosted on some remote repository. 
-* `ports`: This is used to map the container’s ports to the host machine `host port 32001: container port 5432`.
-* `environment`: Defines the environment variables set in the container.
-* `depends_on`: Express dependency between services. In this case `postgres` and `mysql` service are started before `webapp`.
-* `volume`: File system mounted on docker container. In this case we are using a `bind mount` to copy the [databases/postgres_movies_database.sql](databases/postgres_movies_database.sql) file into
+* `ports`: This is used to map the container’s ports to the host machine, i.e. `[host port] 32001: [container port] 5432`.
+* `environment`: Defines the environment variables set to be used in the container.
+* `depends_on`: Express dependency between services. In this case `postgres` and `mysql` services are started before the `webapp` service.
+* `volumes`: File systems to be mounted on the docker container. In this case we are using a `bind mount` to copy the [databases/postgres_movies_database.sql](databases/postgres_movies_database.sql) file into
 the postgres database and [databases/mysql_movies_database.sql](databases/mysql_movies_database.sql) into the mysql database when the container starts.
 
 
@@ -94,20 +93,20 @@ the postgres database and [databases/mysql_movies_database.sql](databases/mysql_
 
 ### Environment variables in compose 
 If you have multiple environment variables, you can substitute them by adding them to a default environment variable file named 
-`.env` which compose automatically looks for in the project directory, alternatively you can provide a path to your environment 
+`.env` which compose automatically looks for in the project directory. Alternatively you can provide a path to your environment 
 variables file using the `--env-file` command line option. 
  
 For this lab, we have a [`.env`](.env) file defined within this directory. Each line in an `env` file must be in `VARIABLE=VALUE` format. 
-Compose files use a Bash-like syntax `${VARIABLE}` to evaluate. 
+Compose files use a bash-like syntax `${VARIABLE}` to evaluate. 
 
-**.env** file: 
+For example: 
 
+**.env** file 
 ```shell script
 POSTGRES_PASSWORD=secret1
 ```
 
-**docker-compose.yml** file: 
-
+**docker-compose.yml** file
 ```shell script
 "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
 ```
@@ -116,6 +115,9 @@ POSTGRES_PASSWORD=secret1
 
 `docker compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
 It builds the images if they are not located locally and starts the containers.
+
+* If the image clause within the service is provided, it will look for it locally, if it exists will use it, if not it will pull it from the remote repository (i.e. DockerHub)
+* If the build clause is provided instead, it will look locally to see if the image already exists, if not it will build it from the `Dockerfile` in the directory provided. 
 
 `docker compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
 
@@ -127,10 +129,10 @@ Now that we are all set, let's run our docker compose file:
 > contains the `docker-compose.yml` file (in this case within `Lab1_DockerForDatabases` folder)
 
 ```shell script
-$ docker compose up
+$ docker compose up -d
 ```
 
-Open another terminal window and make sure your container is running: 
+Verify your container is running: 
 
 ```shell script
 $ docker compose ps
