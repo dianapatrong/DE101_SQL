@@ -27,7 +27,7 @@ You'll learn how to:
  
 # Let's get started
 
-### Docker Compose
+## Docker Compose
 In this folder there's a pre-defined [`docker-compose.yml`](docker-compose.yml) file, let's walk through the file
 to make sure you understand it. 
 
@@ -91,7 +91,7 @@ the postgres database and [databases/mysql_movies_database.sql](databases/mysql_
 > Instead, Docker and other container managers make it easy to map ports between the host OS and the container
 
 
-### Environment variables in compose 
+## Environment variables in compose 
 If you have multiple environment variables, you can substitute them by adding them to a default environment variable file named 
 `.env` which compose automatically looks for in the project directory. Alternatively you can provide a path to your environment 
 variables file using the `--env-file` command line option. 
@@ -111,7 +111,7 @@ POSTGRES_PASSWORD=secret1
 "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
 ```
 
-### Docker Compose commands
+## Docker Compose commands
 
 `docker compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
 It builds the images if they are not located locally and starts the containers.
@@ -121,7 +121,7 @@ It builds the images if they are not located locally and starts the containers.
 
 `docker compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
 
-### Running docker compose 
+## Running docker compose 
 
 Now that we are all set, let's run our docker compose file: 
 
@@ -142,7 +142,7 @@ postgres_db         "docker-entrypoint.s…"   postgres            running      
 webapp              "python server.py"       webapp              running             0.0.0.0:5000->5000/tcp
 ```
 
-### Explore the webapp
+## Explore the webapp
 
 Now that we have our containers running, if you go to [`http://localhost:5000/`](http://localhost:5000/) you should have something like the 
 following image: 
@@ -151,10 +151,11 @@ following image:
 
 In here, we can see two sections, both are lists of movies with their ratings but one is loaded in MySQL database and the other one in PostgreSQL database. 
 
-### Connect to the PostgreSQL database
+## Connect to the PostgreSQL database
 Now that our container is running, we will connect to the PostgreSQL instance.
+The name of the PostgreSQL database is `postgres` and the default user is also `postgres`, you can find the password defined in the [`.env`](.env) file. 
 
-#### Using the CLI
+### Using the CLI
 
 The following command lets you connect to the PostgreSQL CLI running inside the Docker container, we will need the name of 
 the **service** we want to connect to.
@@ -181,6 +182,7 @@ postgres=#
 You can now run SQL queries against this database! 
 
 ### ✏️ Exercise 1: Connect to the MySQL instance using the CLI 
+The name of the MySQL database is `movies` and the default user is `root`, you can find the password defined in the [`.env`](.env) file. 
 Connect through the CLI to the MySQL instance
 
 ### ✏️ Exercise 2: Connect to the MySQL instance using the db client of your preference
