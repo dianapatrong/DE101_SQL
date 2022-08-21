@@ -220,8 +220,38 @@ Using the commands to stop and run Docker Compose, do it again to restart our co
 * Why does it happen? 
 
 ### ✏️ Extra for nerds: Mount a volume for persisting the new data
-So now that you know why the newly inserted data is not available, you can redefine your `docker-compose.yml` file
-to persist the data inserted in Exercise 4. 
+Redefine your `docker-compose.yml` file to persist the data inserted in Exercise 4. 
+
+You can do so by adding the following lines to the docker-compose.yml file: 
+
+1. Add the shared volumes to the docker compose file definition, this definition happens at the same level of the services tag (not under it). 
+
+```dockerfile
+volumes:
+    postgresql:
+    mysql:
+```
+
+2. Add the volume to the postgresql service (append it as a new line).
+
+```dockerfile
+volumes:  
+    - postgresql:/var/lib/postgresql/data
+```
+
+3. Add this volume to the mysql service (append it as a new line).
+```dockerfile
+volumes:
+    - mysql:/var/lib/mysql
+```
+
+4. Run the containers and insert the data from the Exercise 4 to both databases.
+
+5. Stop the containers
+
+7. Start the containers again
+
+> NOTE: You should see your data was persisted this time
 
 ### Stop your services! 
 Don't forget to stop your containers when you are done.
