@@ -7,7 +7,7 @@ In this laboratory we will run multiple containers using Docker Compose. We will
 * MySQL: Preloaded with movies information
 * Python Web App 
 
-[Lab 1 Diagram](documentation_images/lab1_diagram.png)
+![Lab 1 Diagram](documentation_images/lab1_diagram.png)
 
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
@@ -145,7 +145,7 @@ webapp              "python server.py"       webapp              running        
 Now that we have our containers running, if you go to [`http://localhost:5000/`](http://localhost:5000/) you should have something like the 
 following image: 
 
-[Wep app](documentation_images/webapp.png)
+![Wep app](documentation_images/webapp.png)
 
 In here, we can see two sections, both are lists of movies with their ratings but one is loaded in MySQL database and the other one in PostgreSQL database. 
 
@@ -229,6 +229,6 @@ to the list please share with the teacher(s).
 #### Error: Public Key Retrieval
 If you have this error with mysql, go to the driver properties and change the `allowPublickKeyRetrieval` to **true**.
 
-[Error: Mysql](documentation_images/error_mysql.png)
+![Error: Mysql](documentation_images/error_mysql.png)
 
 
