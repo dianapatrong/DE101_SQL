@@ -1,9 +1,10 @@
 version: "3"
 services:
     db:
-        container_name: movies_db
-        image: postgres:14-alpine
+        container_name: music_db
+        image: mysql:8.0
+        platform: linux/amd64
         ports:
-            - "32001:5432"
+            - "32002:3306"
         environment:
-            - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
