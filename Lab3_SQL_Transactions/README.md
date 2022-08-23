@@ -1,5 +1,8 @@
 # Lab 3: SQL Transactions
 
+In this lab we will go side-by-side into executing a transactions example. 
+
+![Transactions Diagram](documentation_images/transaction_diagram.png)
 
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
