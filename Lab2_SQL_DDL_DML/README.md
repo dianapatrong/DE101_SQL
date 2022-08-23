@@ -19,11 +19,20 @@ regarding music albums, artists and their genre and manipulate the data within i
 In this repository you will find a `docker-compose.yml` file with a MySQL database defined, you can also find the environment
 variables file, please leverage it to start your container. 
 
+
+> NOTE: Please save all of your queries within a answers.sql file
+
+
 1. Create a `music` database
 
 2. Write the DDL commands to create the tables within the `movie` database using the following schema: 
 
 ![Music Database Diagram](documentation_images/music_database.png)
+
+Your statements should include: 
+* Column name
+* Data Type and size
+* Primary key and foreign key 
 
 3. Now let's insert some data into our tables according to the following information: 
 
@@ -88,6 +97,8 @@ variables file, please leverage it to start your container.
 
 4. Get all the Harry Styles albums and their released year. 
 
+> HINT: You can use a subquery
+
 5. Was Master of Puppets released by Harry Styles? I don't think so, let's update it with the correct artist that in 
 this case is `Metallica`. Verify the album is not longer displayed under Harry Styles. 
 
@@ -101,10 +112,10 @@ this case is `Metallica`. Verify the album is not longer displayed under Harry S
 8. We made a mistake when inserting the released date for the `Blink-182` album, let's update that record with the actual 
 date of `2003-10-18`.
 
-9. Get all the albums that contain the letter `V` (case-insensitive) at the beginning (first letter) of their name.
+9. Get all the albums that contain the letter `V` at the beginning (first letter) of their name.
 
 10. Delete the `Classical music` record in the `genre` table. 
 
+11. What happens if you `TRUNCATE` the `genre` table? Give it a try. 
 
-## Troubleshooting
-
+12. Let's get rid of all the data from the `album` table. Why does this time the command was allowed compared to step 11? 
