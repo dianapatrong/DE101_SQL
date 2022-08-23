@@ -148,9 +148,15 @@ Both changes to the `products` and `orders` table are now saved permanently.
 
 ### Why are transactions useful? 
 
-Imagine you have many SQL statements that make changes to multiple related tables, let's say you have 10 
+Databases are known for processing millions of concurrent requests per second. In many cases, these requests touch the 
+same item within the database. Imagine, for instance, that you are trying to purchase a **limited** supply of your favorite game 
+on an online e-commerce site. Suppose everyone in the online store puts the game in their carts at the same time and 
+proceed to checkout. In that case, the remaining inventory needs to be calculated accurately (neither over nor under). 
+Typically, a database transaction is used in such scenarios.
+
+
+Now imagine you have many SQL statements that make changes to multiple related tables, let's say you have 10 
 related SQL statements, and whenever you are executing them the 9th statement fails and you need to undo any change made
 by the previous 8 statements **manually**.
-
 Using a transaction feature will save you from manually doing it, you can leverage the `ROLLBACK` and `COMMIT` statements to 
 either undo or save all related changes at once. 
