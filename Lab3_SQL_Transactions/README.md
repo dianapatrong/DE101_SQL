@@ -1,6 +1,7 @@
 # Lab 3: SQL Transactions
 
-In this lab we will go side-by-side into executing a transactions example. 
+In this lab we will go side-by-side into executing a transactions example, for that we will create an inventory management
+table for a store that sells clothing. 
 
 ![Transactions Diagram](documentation_images/transaction_diagram.png)
 
@@ -14,11 +15,11 @@ In this lab we will go side-by-side into executing a transactions example.
 
 ## Let's get started
 
-You have two tables `products` and `orders`: 
+The store has two tables `products` and `orders` under their database which is called `old_navy`.
 
 ![Lab 3 Diagram](documentation_images/lab3_diagram.png)
 
-For simplicity I have defined the tables that you will need to create, you will also have to create the `ecommerce` database:
+For simplicity I have defined the tables that you will need to create, you will also have to create the `old_navy` database:
 
 ```
 CREATE TABLE products (
@@ -60,7 +61,7 @@ But, since we only had 5 pieces of Jeans in **stock**, MySQL will throw an error
 out of range: 
 
 ```
-SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`ecommerce`.`products`.`stock` - 10)'
+SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`old_navy`.`products`.`stock` - 10)'
 ```
 
 Now we will have to cancel the order since we don't have enough stock for the Jeans, so let's remove it from the database: 
@@ -74,7 +75,7 @@ the transaction was validated.
 
 This case is exactly where a transaction can help you...
 
-### Rolling back changes
+## Rolling back changes
 
 Multiple SQL statements executed within a transaction won't be permanently saved to the database until you run 
 a `COMMIT` statement. 
@@ -97,7 +98,7 @@ UPDATE products SET stock = stock - 8 WHERE id = 1;
 The `UPDATE` statement above still fails because you don’t have 8 pieces of Jeans in stock:
 
 ```
-SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`ecommerce`.`products`.`stock` - 8)'
+SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`old_navy`.`products`.`stock` - 8)'
 ```
 
 If you query the `orders` table, you will have a new order record for the 8 pieces of Jeans: 
@@ -122,7 +123,7 @@ ROLLBACK;
 That order should no longer be within the `orders` table. 
 
 
-### Committing transaction changes
+## Committing transaction changes
 
 Let's think about another scenario, a few days later a third order comes in for 4 pieces of Jeans, this time you will try
 to run the insert and update statements under a transaction again: 
