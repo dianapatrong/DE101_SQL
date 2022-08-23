@@ -9,9 +9,8 @@ regarding music albums, artists and their genre and manipulate the data within i
 * Install docker compose (only if you are on Linux)
 
 ### What You Will Learn
-* Create and execute DDL statements (CREATE, ALTER).   To be implemented (TRUNCATE, DROP)
-* Create and execute DML statements (SELECT, INSERT, UPDATE, DELETE). 
-* Create and execute TCL commands.
+* Create and execute DDL statements
+* Create and execute DML statements.
 
 
 ## Let's get started
@@ -20,12 +19,14 @@ In this repository you will find a `docker-compose.yml` file with a MySQL databa
 variables file, please leverage it to start your container. 
 
 
-> NOTE: Please save all of your queries within a answers.sql file
+> NOTE: 
+> 1. Please save all of your queries within a answers.sql file that you will include as part of your solution
+> 2. Since we haven't seen JOINS you will need to use SUBQUERIES for this lab
 
 
-1. Create a `music` database
+#### 1. Create a `music` database
 
-2. Write the DDL commands to create the tables within the `movie` database using the following schema: 
+#### 2. Write the DDL commands to create the tables within the `movie` database using the following schema: 
 
 ![Music Database Diagram](documentation_images/music_database.png)
 
@@ -34,7 +35,7 @@ Your statements should include:
 * Data Type and size
 * Primary key and foreign key 
 
-3. Now let's insert some data into our tables according to the following information: 
+#### 3. Now let's insert some data into our tables according to the following information: 
 
 **Genre**
 
@@ -95,27 +96,26 @@ Your statements should include:
 | 20       | Music of the Spheres                      | 2021-10-15    | 11        | 1        |
 | 21       | Viva la Vida or Death and All His Friends | 2008-06-12    | 11        | 1        |
 
-4. Get all the Harry Styles albums and their released year. 
+#### 4. Get all the Harry Styles albums and their released year. 
 
-> HINT: You can use a subquery
-
-5. Was Master of Puppets released by Harry Styles? I don't think so, let's update it with the correct artist that in 
+#### 5. Was Master of Puppets released by Harry Styles? I don't think so, let's update it with the correct artist that in 
 this case is `Metallica`. Verify the album is not longer displayed under Harry Styles. 
 
-6. Add a new column of a suitable data type named `has_awards` with a suitable default value. 
+#### 6. Add a new column of a suitable data type named `has_awards` with a suitable default value. 
 
-7. Update the value of the new column `has_awards` to reflect that the following albums have awards and verify it's reflected: 
+#### 7. Update the value of the new column `has_awards` to reflect that the following albums have awards and verify it's reflected: 
     * Evolve
     * Trench
     * Blink-182
 
-8. We made a mistake when inserting the released date for the `Blink-182` album, let's update that record with the actual 
-date of `2003-10-18`.
+#### 8. We made a mistake when inserting the released date for the `Blink-182` album, let's update that record with the actual date of `2003-10-18`.
 
-9. Get all the albums that contain the letter `V` at the beginning (first letter) of their name.
+#### 9. Get all the albums that contain the letter `V` at the beginning (first letter) of their name.
 
-10. Delete the `Classical music` record in the `genre` table. 
+#### 10. Delete the `Classical music` record in the `genre` table. 
 
-11. What happens if you `TRUNCATE` the `genre` table? Give it a try. 
+#### 11. What happens if you `TRUNCATE` the `genre` table? Give it a try. 
 
-12. Let's get rid of all the data from the `album` table. Why does this time the command was allowed compared to step 11? 
+#### 12. Let's get rid of all the data from the `album` table. Why does this time the command was allowed compared to step 11? 
+
+#### 13. Drop the 3 databases you created, think about the order you should follow to do so. 
