@@ -208,7 +208,8 @@ mysql> SELECT * FROM products;
 |  1 |        Jeans |      1 |
 +----+--------------+--------+
 ```
-### Why are transactions useful? 
+
+# Why are transactions useful? 
 
 Databases are known for processing millions of concurrent requests per second. In many cases, these requests touch the 
 same item within the database. Imagine, for instance, that you are trying to purchase a **limited** supply of your favorite game 
