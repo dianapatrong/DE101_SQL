@@ -11,7 +11,8 @@ table for Old Navy, which is a store that sells clothing.
 * Install docker compose (only if you are on Linux)
 
 ### What You Will Learn
-
+- Transactions and why are they useful
+- How to use `COMMIT` and `ROLLBACK` statements to manage transactions
 
 # Let's get started
 
