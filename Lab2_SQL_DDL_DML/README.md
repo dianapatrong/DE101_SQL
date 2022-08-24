@@ -1,7 +1,20 @@
 # Lab 2: SQL Statement Types [DDL & DML]
 
 In this lab, your main goal is to create a music database within a docker container. You will have to create the table 
-to hold information regarding music albums, artists, the artist genre and manipulate the data within the those tables. 
+to hold information regarding music albums, artists, the artist genre, manipulate the data within the those tables and answer
+some questions. 
+
+Please save all of your queries within a `answers.sql` file that you will include as part of your solution, add a header with the 
+name of the step in the `.sql` file.
+
+Example: 
+```
+-- Step 1
+SELECT * FROM table; 
+
+-- Step 2
+-- This happens because ..
+```
 
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
@@ -18,10 +31,8 @@ to hold information regarding music albums, artists, the artist genre and manipu
 In this repository you will find a `docker-compose.yml` file with a MySQL database defined, you can also find the environment
 variables file, please leverage it to start your container. 
 
-
 > NOTE: 
-> 1. Please save all of your queries within a answers.sql file that you will include as part of your solution
-> 2. Since we haven't seen JOINS you will need to use **SUBQUERIES** for this lab
+> 1. Since we haven't seen JOINS you may need to use **SUBQUERIES** for filtering in this lab
 
 
 ### Step 1
@@ -102,19 +113,22 @@ Was Master of Puppets released by Harry Styles? I don't think so, let's update i
 this case is `Metallica`. Verify the album is not longer displayed under Harry Styles. 
 
 ### Step 6
-Add a new column of a suitable data type named `has_awards` with a suitable default value. 
+Add a new column called `has_awards` with a suitable data type given its name; give this column a default value that makes sense. 
 
 ### Step 7
-Update the value of the new column `has_awards` to reflect that the following albums have awards and verify it's reflected: 
-    * Evolve
-    * Trench
-    * Blink-182
+Update the value of the new column `has_awards` for the following albums indicating that they have awards:
+
+- Evolve
+- Trench
+- Blink-182
+
+Verify that your changes are reflected. 
 
 ### Step 8
 We made a mistake when inserting the released date for the `Blink-182` album, let's update that record with the actual date of `2003-10-18`.
 
 ### Step 9
-Get all the albums that contain the letter `V` at the beginning (first letter) of their name.
+Get all the albums which names start with the letter `V`.
 
 ### Step 10
 Delete the `Classical music` record in the `genre` table. 
@@ -126,4 +140,4 @@ What happens if you `TRUNCATE` the `genre` table? Give it a try.
 Let's get rid of all the data from the `album` table. Why does this time the command was allowed compared to step 11? 
 
 ### Step 13
-Drop the 3 databases you created, think about the order you should follow to do so. 
+Drop the 3 databases you created. Think about the order you should follow to do so. 

@@ -13,7 +13,7 @@ table for a store that sells clothing.
 ### What You Will Learn
 
 
-## Let's get started
+# Let's get started
 
 The store has two tables `products` and `orders` under their database which is called `old_navy`.
 
@@ -38,18 +38,24 @@ CREATE TABLE orders (
 );
 ```
 
-Now that the tables are created,  let's insert 5 Jeans in stock into the `products` table:
+## Step 1
+Create the tables with the provided schema
+
+## Step 2
+Now that the tables are created, let's insert 5 Jeans in stock into the `products` table:
 
 ```
 INSERT INTO products VALUES (NULL, "Jeans", 5);
 ```
 
-Some time later, you get an order for the Jeans with a quantity of 10, which will be inserted into the `orders` table: 
+## Step 4
+Some time later, you get an order to buy 10 pairs of jeans, which will be inserted into the `orders` table: 
 
 ```
 INSERT INTO orders VALUES (NULL, 1, 10);
 ```
 
+## Step 5
 After saving the order to the `orders` table, you will need to update the **stock** column from the `products` table for  
 the ordered jeans: 
 
@@ -64,6 +70,7 @@ out of range:
 SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`old_navy`.`products`.`stock` - 10)'
 ```
 
+## Step 6
 Now we will have to cancel the order since we don't have enough stock for the Jeans, so let's remove it from the database: 
 
 ```
@@ -75,7 +82,7 @@ the transaction was validated.
 
 This case is exactly where a transaction can help you...
 
-## Rolling back changes
+# Rolling back changes
 
 Multiple SQL statements executed within a transaction won't be permanently saved to the database until you run 
 a `COMMIT` statement. 
@@ -86,8 +93,10 @@ To start a transaction, you need to run the `START TRANSACTION` statement first:
 START TRANSACTION; 
 ```
 
-Now every single statement that you run after that command won't be saved permanently to the database, to test it out
-let's insert another record to the `orders` table as follows: 
+Now every single statement that you run after that command won't be saved permanently to the database. 
+
+## Step 1
+Let's insert another record to the `orders` table as follows but this time we will use a transaction.
 
 ```
 START TRANSACTION;
@@ -101,7 +110,8 @@ The `UPDATE` statement above still fails because you don’t have 8 pieces of Je
 SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range in '(`old_navy`.`products`.`stock` - 8)'
 ```
 
-If you query the `orders` table, you will have a new order record for the 8 pieces of Jeans: 
+## Step 2
+If you query the `orders` table, you will have a new order record for the 8 pairs of jeans: 
 
 ```
 mysql> SELECT * FROM orders;
@@ -114,6 +124,7 @@ mysql> SELECT * FROM orders;
 
 ```
 
+## Step 3
 Instead of running a `DELETE` statement, since we are already within a transaction, we can simply `ROLLBACK` the insertion: 
 
 ```
@@ -123,10 +134,13 @@ ROLLBACK;
 That order should no longer be within the `orders` table. 
 
 
-## Committing transaction changes
+# Committing transaction changes
 
-Let's think about another scenario, a few days later a third order comes in for 4 pieces of Jeans, this time you will try
-to run the insert and update statements under a transaction again: 
+Let's think about another scenario, a few days later a third order comes in for 4 pairs of Jeans, this time you will try
+to run the insert and update statements under a transaction again. 
+
+## Step 1: 
+Let's insert the new record for the 4 pairs of jeans to the `orders` table using a transaction.
 
 ```
 START TRANSACTION;
@@ -134,8 +148,9 @@ INSERT INTO orders VALUES (NULL, 1, 3);
 UPDATE products SET stock = stock - 3 WHERE id = 1;
 ```
 
-This time the `UPDATE` statement did work because you still had 5 pieces of Jeans at the time of the order. 
+This time the `UPDATE` statement did work because you still had 5 pairs of jeans at the time of the order. 
 
+## Step 2: 
 Now you can save the changes permanently to the database using the `COMMIT` statement: 
 
 ```
@@ -143,7 +158,6 @@ COMMIT;
 ```
 
 Both changes to the `products` and `orders` table are now saved permanently. 
-
 
 
 ### Why are transactions useful? 
