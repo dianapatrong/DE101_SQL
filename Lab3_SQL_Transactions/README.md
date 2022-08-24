@@ -45,7 +45,7 @@ CREATE TABLE orders (
 ```
 
 ## Step 3
-Now that the tables are created, the manager asks you to update the product inventory with 5 pairs of jeans arrived in the 
+Now that the tables are created, the manager asks you to update the product inventory with 5 pairs of jeans that arrived in the 
 latest shipment: 
 
 ```
@@ -53,7 +53,7 @@ INSERT INTO products VALUES (NULL, "Jeans", 5);
 ```
 
 ## Step 4
-A few hours later, you get an order to buy 10 pairs of jeans, which will be inserted into the `orders` table: 
+A few hours later, you get an order from **Joey** to buy 10 pairs of jeans, which will be inserted into the `orders` table: 
 
 ```
 INSERT INTO orders VALUES (NULL, 1, 10);
@@ -75,7 +75,7 @@ SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range
 ```
 
 ## Step 6
-We need to cancel the order since we don't have enough jeans in stock for that order, so let's remove the order: 
+We need will need to cancel **Joey's** order since we don't have enough jeans in stock to send him, so let's remove the order: 
 
 ```
 DELETE FROM orders WHERE id = 1;
@@ -108,7 +108,8 @@ START TRANSACTION;
 Now every single statement that you run after that command won't be saved permanently to the database.. yet. 
 
 ## Step 1
-The store gets another order for 8 pairs of jeans a few hours later, let's insert that order, but this time we will use a transaction.
+A few hours later, the store gets another order from **Angela** to buy 8 pairs of jeans, let's insert that order, 
+but this time we will use a transaction.
 
 ```
 START TRANSACTION;
@@ -123,7 +124,7 @@ SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range
 ```
 
 ## Step 2
-If you query the `orders` table, you will have a new order record for the 8 pairs of jeans: 
+If you query the `orders` table, you will have a **Angela's**  order record for the 8 pairs of jeans: 
 
 ```
 mysql> SELECT * FROM orders;
@@ -145,7 +146,8 @@ ROLLBACK;
 
 
 ## Step 4
-If we take a look at our past orders, the order for the 8 pairs of jeans is no longer displayed
+If we take a look at our past orders, **Angela's** order for the 8 pairs of jeans is no longer displayed because it was automatically
+cancelled when we used the `ROLLBACK` statement. 
 
 ```
 mysql> SELECT * FROM orders;
@@ -155,6 +157,7 @@ mysql> SELECT * FROM orders;
 |  1 |          1 |       10 |
 +----+------------+----------+
 ```
+
 # Committing transaction changes
 
 A `COMMIT` statement  is used to make the current transaction permanent. It shows the successful completion of a transaction. 
@@ -166,8 +169,8 @@ a `COMMIT` statement.
 
 
 ## Step 1: 
-Let's think about another scenario, a few days later a third order comes in for 4 pairs of Jeans, this time you will add that order
-to our `orders` table and update the inventory under a transaction.  
+Let's think about another scenario, a few days later a third order comes from **Tony** to buy 4 pairs of jeans, this time 
+you will add that order to our `orders` table and update the inventory using a transaction.  
 
 ```
 START TRANSACTION;
@@ -175,17 +178,17 @@ INSERT INTO orders VALUES (NULL, 1, 4);
 UPDATE products SET stock = stock - 4 WHERE id = 1;
 ```
 
-The `UPDATE` statement did work this time because you still had 5 pairs of jeans at the time of the order. 
+The `UPDATE` statement did work this time because we still had 5 pairs of jeans in stock at the time of the order. 
 
 ## Step 2: 
-Now you can save the changes permanently to the database using the `COMMIT` statement: 
+Now we can save the changes permanently to the database using the `COMMIT` statement: 
 
 ```
 COMMIT; 
 ```
 
 ## Step 3
-Both changes to the `products` and `orders` table are now saved permanently. 
+Both changes to the `products` and `orders` table are now saved permanently and **Tony** will get his 4 pairs of jeans.  
 
 ```
 mysql> SELECT * FROM orders;
