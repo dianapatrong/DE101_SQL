@@ -48,14 +48,14 @@ Now that the tables are created, the manager asks you to update the product inve
 latest shipment: 
 
 ```
-INSERT INTO products VALUES (NULL, "Jeans", 5);
+INSERT INTO products(product_name, stock)  VALUES ("Jeans", 5);
 ```
 
 ## Step 4
 A few hours later, you get an order from **Joey** to buy 10 pairs of jeans, which will be inserted into the `orders` table: 
 
 ```
-INSERT INTO orders VALUES (NULL, 1, 10);
+INSERT INTO orders(product_id, quantity) VALUES (1, 10);
 ```
 
 ## Step 5
@@ -112,7 +112,7 @@ but this time we will use a transaction.
 
 ```
 START TRANSACTION;
-INSERT INTO orders VALUES (NULL, 1, 8);
+INSERT INTO orders(product_id, quantity) VALUES (1, 8);
 UPDATE products SET stock = stock - 8 WHERE id = 1;
 ```
 
@@ -123,14 +123,13 @@ SQL Error [1690] [22001]: Data truncation: BIGINT UNSIGNED value is out of range
 ```
 
 ## Step 2
-If you query the `orders` table, you will have a **Angela's**  order record for the 8 pairs of jeans: 
+If you query the `orders` table, you will have a **Angela's** order record for the 8 pairs of jeans: 
 
 ```
 mysql> SELECT * FROM orders;
 +----+------------+----------+
 | id | product_id | quantity |
 +----+------------+----------+
-|  1 |          1 |       10 |
 |  2 |          1 |        8 |
 +----+------------+----------+
 
@@ -149,12 +148,8 @@ If we take a look at our past orders, **Angela's** order for the 8 pairs of jean
 cancelled when we used the `ROLLBACK` statement. 
 
 ```
-mysql> SELECT * FROM orders;
-+----+------------+----------+
-| id | product_id | quantity |
-+----+------------+----------+
-|  1 |          1 |       10 |
-+----+------------+----------+
+mysql> select * FROM orders;
+Empty set (0.00 sec)
 ```
 
 # Committing transaction changes
@@ -179,6 +174,15 @@ UPDATE products SET stock = stock - 4 WHERE id = 1;
 
 The `UPDATE` statement did work this time because we still had 5 pairs of jeans in stock at the time of the order. 
 
+```
+mysql> select * from orders;
++----+------------+----------+
+| id | product_id | quantity |
++----+------------+----------+
+|  3 |          1 |        4 |
++----+------------+----------+
+```
+
 ## Step 2
 Now we can save the changes permanently to the database using the `COMMIT` statement: 
 
@@ -194,7 +198,6 @@ mysql> SELECT * FROM orders;
 +----+------------+----------+
 | id | product_id | quantity |
 +----+------------+----------+
-|  1 |          1 |       10 |
 |  3 |          1 |        4 |
 +----+------------+----------+
 ```
