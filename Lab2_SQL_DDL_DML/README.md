@@ -79,7 +79,7 @@ Artist
 | 11        | Coldplay          |
 | 12        | The Chainsmokers  |
 
-Albums
+Album
 
 | album_id | album_name                                | date_released | artist_id | genre_id |
 |:--------:|:-----------------------------------------:|:-------------:|:---------:|:--------:|

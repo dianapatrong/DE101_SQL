@@ -1,6 +1,6 @@
 # Lab 3: SQL Transactions
 
-In this lab we will go side-by-side into executing a transactions example, for that we will create an inventory management
+In this lab we will go side-by-side into executing a transactions example. We will create an inventory management
 table for Old Navy, which is a store that sells clothing. 
 
 ![Transactions Diagram](documentation_images/transaction_diagram.png)
@@ -15,8 +15,7 @@ table for Old Navy, which is a store that sells clothing.
 
 # Let's get started
 
-The store so far has only products and their orders listed under their database, please look at how they are related in the following
-diagram: 
+The store has a database with two tables for their `products` and `orders` like the following diagram: 
 
 ![Lab 3 Diagram](documentation_images/lab3_diagram.png)
 
