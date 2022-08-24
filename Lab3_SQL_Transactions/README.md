@@ -168,7 +168,7 @@ Multiple SQL statements executed within a transaction won't be permanently saved
 a `COMMIT` statement. 
 
 
-## Step 1: 
+## Step 1
 Let's think about another scenario, a few days later a third order comes from **Tony** to buy 4 pairs of jeans, this time 
 you will add that order to our `orders` table and update the inventory using a transaction.  
 
@@ -180,7 +180,7 @@ UPDATE products SET stock = stock - 4 WHERE id = 1;
 
 The `UPDATE` statement did work this time because we still had 5 pairs of jeans in stock at the time of the order. 
 
-## Step 2: 
+## Step 2
 Now we can save the changes permanently to the database using the `COMMIT` statement: 
 
 ```
