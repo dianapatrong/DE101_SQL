@@ -113,13 +113,19 @@ POSTGRES_PASSWORD=secret1
 
 ## Docker Compose commands
 
-`docker compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
+`docker-compose up`: This command does the work of the `docker-compose build` and `docker-compose run` commands. 
 It builds the images if they are not located locally and starts the containers.
 
 * If the image clause within the service is provided, it will look for it locally, if it exists will use it, if not it will pull it from the remote repository (i.e. DockerHub)
 * If the build clause is provided instead, it will look locally to see if the image already exists, if not it will build it from the `Dockerfile` in the directory provided. 
 
-`docker compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
+`docker-compose down`: This command is used to destroy all the containers/services run from the Docker Compose file.
+
+
+> ⚠️ Important: 
+> The new Compose V2, which supports the compose command as part of the Docker CLI, is now available.
+> You can run Compose V2 by replacing the hyphen (-) with a space, using docker compose, instead of docker-compose.
+
 
 ## Running docker compose 
 
@@ -129,13 +135,13 @@ Now that we are all set, let's run our docker compose file:
 > contains the `docker-compose.yml` file (in this case within `Lab1_DockerForDatabases` folder)
 
 ```shell script
-$ docker compose up -d
+$ docker-compose up -d
 ```
 
 Verify your container is running: 
 
 ```shell script
-$ docker compose ps
+$ docker-compose ps
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 mysql_db            "docker-entrypoint.s…"   mysql               running             33060/tcp, 0.0.0.0:32002->3306/tcp
 postgres_db         "docker-entrypoint.s…"   postgres            running             0.0.0.0:32001->5432/tcp
@@ -161,7 +167,7 @@ The following command lets you connect to the PostgreSQL CLI running inside the 
 the **service** we want to connect to.
 
 ```
-$ docker compose exec postgres bash
+$ docker-compose exec postgres bash
 bash-5.1# 
 ```
 
