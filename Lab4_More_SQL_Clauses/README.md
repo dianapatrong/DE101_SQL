@@ -20,7 +20,7 @@ and a `world.sql` file, when doing a `docker-compose up -d` it will automaticall
 
 ## Cheatsheet
 
-You can take a look at the SQL Joins cheat sheet  provided by LearnSQL.com here -> [SQL Joins Cheatsheet](documentation_images/joins-cheat-sheet-a4.pdf)
+You can take a look at the SQL Joins cheat sheet  provided by LearnSQL.com [here](documentation_images/joins-cheat-sheet-a4.pdf)
 
 ## Designing a query 
 
