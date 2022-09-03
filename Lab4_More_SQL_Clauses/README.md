@@ -18,6 +18,10 @@ and a `world.sql` file, when doing a `docker-compose up -d` it will automaticall
 
 ![World Database ERD](documentation_images/world_erd.png)
 
+## Cheatsheet
+
+You can take a look at the SQL Joins cheat sheet here -> [SQL Joins Cheatsheet](documentation_images/joins-cheat-sheet-a4.pdf)
+
 ## Designing a query 
 
 Figure out how to write your SQL queries, the following questions will help you out: 
