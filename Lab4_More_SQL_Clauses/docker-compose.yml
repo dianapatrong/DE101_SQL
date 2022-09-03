@@ -1,0 +1,12 @@
+version: "3"
+services:
+    db:
+        container_name: world
+        image: mysql:8.0
+        platform: linux/amd64
+        ports:
+            - "32002:3306"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+        volumes:
+            - "./world.sql:/docker-entrypoint-initdb.d/world.sql"
