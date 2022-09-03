@@ -19,17 +19,19 @@ and a `world.sql` file, when doing a `docker-compose up -d` it will automaticall
 
 Figure out how to write your SQL queries, the following questions will help you out: 
 
-* Which tables contain the critical data? `(FROM)`
-* Which columns do I need in the result set? `(SELECT)`
-* Are there any tables that should be connected? If so, how are they connected `(JOIN and/or WHERE)`?
-* Do I need to filter any values `(WHERE)`?
-* Do I need to return only `DISTINCT` records?
+* Which tables contain the critical data? `**(FROM)**`
+* Which columns do I need in the result set? `**(SELECT)**`
+* Are there any tables that should be connected? If so, how are they connected `**(JOIN and/or WHERE)**`?
+* Do I need to filter any values `**(WHERE)**`?
+* Do I need to return only `**DISTINCT**` records?
 * Do I care about the order of records returned? If so, which columns do I need to sort by and in what precedence?
 
 # Exercises
 
 ## Exercise 1
 List the full names of all countries where English is spoken as an official language. Do this as a single query.
+
+> NOTE: Use an inner join
 
 Expected results: 
 ```commandline
@@ -49,8 +51,6 @@ Expected results:
 +--------------------------------------+
 44 rows in set (0.00 sec)
 ```
-
-> NOTE: Use an inner join
  
 ## Exercise 2
 
@@ -72,7 +72,6 @@ Expected results:
 +----------------------------------------------+
 6 rows in set (0.00 sec)
 ```
-
 
 ## Exercise 3
 
@@ -97,4 +96,69 @@ Expected result:
 7 rows in set (0.01 sec)
 ```
 
+
+
 ## Exercise 4
+
+Find how many countries does each continent has, list the result in descending order.
+
+Expected result: 
+```commandline
++---------------+-------+
+| continent     | count |
++---------------+-------+
+| Africa        |    58 |
+| Asia          |    51 |
+| Europe        |    46 |
+| North America |    37 |
+| Oceania       |    28 |
+| South America |    14 |
+| Antarctica    |     5 |
++---------------+-------+
+7 rows in set (0.00 sec)
+```
+
+## Exercise 5
+
+Find the name of the top 10 countries with most official languages. 
+
+Expected result: 
+```commandline
++----------------------+---------------+
+| name                 | LanguageCount |
++----------------------+---------------+
+| Switzerland          |             4 |
+| South Africa         |             4 |
+| Luxembourg           |             3 |
+| Singapore            |             3 |
+| Bolivia              |             3 |
+| Peru                 |             3 |
+| Belgium              |             3 |
+| Vanuatu              |             3 |
+| Cyprus               |             2 |
+| Netherlands Antilles |             2 |
++----------------------+---------------+
+10 rows in set (0.00 sec)
+```
+
+## Exercise 6
+
+Find the total number of people for each district in Mexico, order your results in descending order. 
+
+Expected results: 
+```commandline
++----------------------+------------+
+| District             | Population |
++----------------------+------------+
+| M�xico               |   10181634 |
+| Distrito Federal     |    8591309 |
+| Jalisco              |    4015398 |
+| Guanajuato           |    3492701 |
+| Nuevo Le�n           |    3141441 |
+| Veracruz             |    2747405 |
+| Baja California      |    2346707 |
+...
++----------------------+------------+
+33 rows in set (0.00 sec)
+```
+
