@@ -9,7 +9,7 @@ In this lab we will practice joins, group by and union clauses by using the mysq
 
 ### What You Will Practice
 - Joins
-- Group by
+- Group by and having
 - Union
 
 # Let's get started
@@ -194,4 +194,27 @@ Expected result:
 +----------------------------------------------+-------------+
 33 rows in set (0.00 sec)
 
+```
+
+## Exercise 8
+
+Find the country, district and population where the district's population is between 3,000,000 and 4,000,000. 
+Order in population's descending order. 
+
+> NOTE: Use having clause
+
+Expected results: 
+```commandline
++---------------+------------------+--------------------+
+| name          | District         | DistrictPopulation |
++---------------+------------------+--------------------+
+| Australia     | New South Wales  |            3993949 |
+| Vietnam       | Ho Chi Minh City |            3980000 |
+| Spain         | Madrid           |            3962883 |
+| China         | Jiangxi          |            3831558 |
+| South Korea   | Pusan            |            3804522 |
+| United States | Illinois         |            3737498 |
+...
++---------------+------------------+--------------------+
+25 rows in set (0.01 sec)
 ```
