@@ -1,13 +1,16 @@
 # Lab 4: SQL Clauses [Joins, Group by & Union]
 
+In this lab we will practice joins, group by and union clauses by using the mysql `world` sample database. 
+
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
 * Install a db client (i.e. [DBeaver](https://dbeaver.io/download/)) 
 * Install docker compose (only if you are on Linux)
 
-### What You Will Learn
-- Joins (Inner, Left, Right, etc)
-
+### What You Will Practice
+- Joins
+- Group by
+- Union
 
 # Let's get started
 For this lab we will use mysql's `world` sample database, in this folder there's a `docker-compose.yml` file 
@@ -96,8 +99,6 @@ Expected result:
 7 rows in set (0.01 sec)
 ```
 
-
-
 ## Exercise 4
 
 Find how many countries does each continent has, list the result in descending order.
@@ -162,3 +163,31 @@ Expected results:
 33 rows in set (0.00 sec)
 ```
 
+## Exercise 7
+
+Find the name and surface area of:
+
+* All countries in **Antarctica** 
+* Countries which speak Spanish
+
+Order your results in descending order by surface area 
+
+> NOTE: Use the union clause 
+
+Expected result: 
+``` commandline
++----------------------------------------------+-------------+
+| name                                         | SurfaceArea |
++----------------------------------------------+-------------+
+| Antarctica                                   | 13120000.00 |
+| Canada                                       |  9970610.00 |
+| United States                                |  9363520.00 |
+| Argentina                                    |  2780400.00 |
+| Mexico                                       |  1958201.00 |
+| Peru                                         |  1285216.00 |
+| Colombia                                     |  1138914.00 |
+...
++----------------------------------------------+-------------+
+33 rows in set (0.00 sec)
+
+```
