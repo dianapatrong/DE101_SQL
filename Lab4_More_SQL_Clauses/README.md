@@ -20,17 +20,17 @@ and a `world.sql` file, when doing a `docker-compose up -d` it will automaticall
 
 ## Cheatsheet
 
-You can take a look at the SQL Joins cheat sheet here -> [SQL Joins Cheatsheet](documentation_images/joins-cheat-sheet-a4.pdf)
+You can take a look at the SQL Joins cheat sheet  provided by LearnSQL.com here -> [SQL Joins Cheatsheet](documentation_images/joins-cheat-sheet-a4.pdf)
 
 ## Designing a query 
 
 Figure out how to write your SQL queries, the following questions will help you out: 
 
-* Which tables contain the critical data? `**(FROM)**`
-* Which columns do I need in the result set? `**(SELECT)**`
-* Are there any tables that should be connected? If so, how are they connected `**(JOIN and/or WHERE)**`?
-* Do I need to filter any values `**(WHERE)**`?
-* Do I need to return only `**DISTINCT**` records?
+* Which tables contain the critical data? **`(FROM)`**
+* Which columns do I need in the result set? **`(SELECT)`**
+* Are there any tables that should be connected? If so, how are they connected **`(JOIN and/or WHERE)`**?
+* Do I need to filter any values **`(WHERE)`**?
+* Do I need to return only **`DISTINCT`** records?
 * Do I care about the order of records returned? If so, which columns do I need to sort by and in what precedence?
 
 # Exercises
