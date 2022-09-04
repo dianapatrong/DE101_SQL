@@ -1,5 +1,11 @@
 # Lab 5: Window Functions
 
+In this lab we will put to practice different types of Window Functions. 
+
+We will be using the tables **orders** and **order_details** from the Northwind sample database adapted for MySQL. 
+
+![Northwind ERD](documentation_images/orders_erd.png)
+
 
 ### Prerequisites
 * [Install docker](https://docs.docker.com/engine/install/) 
@@ -8,8 +14,6 @@
 
 ### What You Will Practice
 - Window functions
-
-# Let's get started
 
 ## Window functions syntax
 
@@ -41,64 +45,62 @@ The window functions are divided into three types value window functions, aggreg
 * **Value functions**: these functions allow you to compare values from previous or following rows within the partition or the first or last value within the partition.
 
 
-In this lab we will be using the tables **orders** and **order_details** from the Northwind sample database adapted for MySQL. 
+# Let's get started
 
-![Northwind ERD](documentation_images/orders_erd.png)
+## Aggregate functions exercises
 
-# Aggregate functions exercises
-
-## Exercise 1
+### Exercise 1
 
 Create a column to calculate the average **Unit Price** for each existing customer.
 
 Expected results: 
 ![Exercise1](documentation_images/exercise1.png)
 
-## Exercise 2
+### Exercise 2
 Create a new column that calculates the minimum **Unit Price** for each product id.
 
 Expected results: 
 ![Exercise1](documentation_images/exercise2.png)
 
-## Exercise 3
+### Exercise 3
 Create a new column that calculates the average **Unit Price** for each group of **CustomerID** and **EmployeeID**.
 
 Expected results: 
 ![Exercise1](documentation_images/exercise3.png)
 
 
-# Ranking functions exercises
+## Ranking functions exercises
 
-## Exercise 4
+### Exercise 4
 Create a new column that ranks the Unit Price of products in descending order for each CustomerID using `ROW_NUMBER()`
 
 Expected results: 
 ![Exercise1](documentation_images/exercise4.png)
 
 
-## Exercise 5: 
+### Exercise 5: 
 Create a new column that ranks the Unit Price of products in descending order for each CustomerID using `RANK()`
 
 Expected results: 
 ![Exercise1](documentation_images/exercise5.png)
 
-## Exercise 6: 
+### Exercise 6: 
 Create a new column that ranks the Unit Price of products in descending order for each CustomerID using `DENSE_RANK()` 
 
 Expected results: 
 ![Exercise1](documentation_images/exercise6.png)
 
 
-# Value functions exercises
+## Value functions exercises
 
-## Exercise 7: 
+### Exercise 7: 
 Create a new column that provides the previous order date's quantity for each ProductID. 
 
 Expected results: 
 ![Exercise1](documentation_images/exercise7.png)
 
 
-## Exercise 8:
+### Exercise 8:
 
 Create a new column that provides the following order date's quantity for each ProductID. 
  
