@@ -18,7 +18,7 @@ The following is the generic syntax for a window function:
 ```
 SELECT <column1>,
        <column2>, 
-       <window function>(expression) OVER (PARTITION BY <partition_list> ORDER BY <order_lits> ROWS frame_clause)
+       <window_function>(expression) OVER (PARTITION BY <partition_list> ORDER BY <order_lits> ROWS frame_clause)
 FROM <table_name>
 ```
 
@@ -32,8 +32,13 @@ FROM <table_name>
 * **ROWS** can be used if we want to further limit the rows within our partition (optional).
 * **frame_clause** defines how much offset from our current row we want our window size. 
 
-The window functions are divided into three types value window functions, aggregation window functions, and ranking window functions:
+The window functions are divided into three types value window functions, aggregation window functions, ranking window functions and value window functions:
 ![Window functions](documentation_images/window_functions.png)
+
+
+* **Aggregate functions**: we can use these functions to calculate various aggregations such as average, total # of rows, maximum or minimum values, or total sum within each window or partition.
+* **Ranking functions**: these functions are useful for ranking rows within each partition.
+* **Value functions**: these functions allow you to compare values from previous or following rows within the partition or the first or last value within the partition.
 
 
 In this lab we will be using the tables **orders** and **order_details** from the Northwind sample database adapted for MySQL. 
@@ -87,3 +92,15 @@ Expected results:
 # Value functions exercises
 
 ## Exercise 7: 
+Create a new column that provides the previous order date's quantity for each ProductID. 
+
+Expected results: 
+![Exercise1](documentation_images/exercise7.png)
+
+
+## Exercise 8:
+
+Create a new column that provides the following order date's quantity for each ProductID. 
+ 
+Expected results: 
+![Exercise1](documentation_images/exercise8.png)
