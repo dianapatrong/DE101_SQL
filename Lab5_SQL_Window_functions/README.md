@@ -36,6 +36,7 @@ FROM <table_name>
 * **ROWS** can be used if we want to further limit the rows within our partition (optional).
 * **frame_clause** defines how much offset from our current row we want our window size. 
 
+## Window functions types 
 The window functions are divided into three types value window functions, aggregation window functions, ranking window functions and value window functions:
 ![Window functions](documentation_images/window_functions.png)
 
