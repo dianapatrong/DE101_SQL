@@ -9,5 +9,4 @@ services:
         environment:
             - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
         volumes:
-            - "./sakila_sampledb/sakila-data.sql:/docker-entrypoint-initdb.d/sakila-data.sql"
-            - "./sakila_sampledb/sakila-schema.sql:/docker-entrypoint-initdb.d/sakila-schema.sql"
+            - "./sakila_sampledb:/docker-entrypoint-initdb.d"
