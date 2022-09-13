@@ -88,4 +88,10 @@ SELECT * FROM customer_info_mx_materialized_view;
 ```
 
 
+Add example of truncate table and query view and materialized view
+
+```
+truncate table customer cascade ; 
+```
+
 
