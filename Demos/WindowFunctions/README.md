@@ -23,9 +23,9 @@ SELECT
   full_name,
   department,
   salary,
-    RANK() OVER (ORDER BY salary DESC) AS dept_rank,
-    DENSE_RANK() OVER (ORDER BY salary DESC) AS dept_dense_rank,
-  ROW_NUMBER() OVER (ORDER BY salary DESC) AS dept_row_number
+    RANK() OVER (ORDER BY salary DESC) AS rank,
+    DENSE_RANK() OVER (ORDER BY salary DESC) AS dense_rank,
+  ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_number
 FROM employee;
 
 ```
