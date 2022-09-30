@@ -6,3 +6,6 @@
 * [Lab 3: SQL Transactions](Labs/Lab3_SQL_Transactions/)
 * [Lab 4: More SQL Clauses [Joins, group by and union]](Labs/Lab4_More_SQL_Clauses/)
 * [Lab 5: Window Functions](Labs/Lab5_SQL_Window_functions/)
+* [Lab 6: Stored Procedures](Labs/Lab6_SQL_StoredProcedures/)
+* [Lab 7: SQL Triggers](Labs/Lab7_SQL_Triggers)
+* [Lab 8: SQL Export Import](Labs/Lab8_Export_Import_DB)
