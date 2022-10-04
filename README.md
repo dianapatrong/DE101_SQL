@@ -9,3 +9,6 @@
 * [Lab 6: Stored Procedures](Labs/Lab6_SQL_StoredProcedures/)
 * [Lab 7: SQL Triggers](Labs/Lab7_SQL_Triggers)
 * [Lab 8: SQL Export Import](Labs/Lab8_Export_Import_DB)
+
+## Module 2 - Python
+* [Lab 1:]() 
