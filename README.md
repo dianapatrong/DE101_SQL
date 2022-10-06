@@ -10,5 +10,6 @@
 * [Lab 7: SQL Triggers](Labs/Lab7_SQL_Triggers)
 * [Lab 8: SQL Export Import](Labs/Lab8_Export_Import_DB)
 
-## Module 2 - Python
-* [Lab 1:]() 
+## Module 2 - Python 🐍
+* [Lab 1: Python Environment Setup](Labs/Python/Lab1_Python_setup/)
+* [Lab 2: Python Basics](Labs/Python/Lab2_Python_Basics/)

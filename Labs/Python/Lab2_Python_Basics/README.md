@@ -1,4 +1,4 @@
-# Python basics 
+# Python Lab2: Basics 
 
 ### Set
 * Sets are unordered.
