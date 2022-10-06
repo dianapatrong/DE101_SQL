@@ -12,8 +12,20 @@ projects have different and conflicting dependencies.
 
 ## Install pyenv
 
+Follow the provided tutorials depending your OS to install **pyenv** in your machine:
+
 * Window: https://github.com/pyenv-win/pyenv-win
 * Mac/Linux: https://realpython.com/intro-to-pyenv/
+
+> Don't forget to add pyenv to your path as showed in the tutorials
+
+
+## Using pyenv to install python
+There are multiple versions of python where you can choose from, for these series of labs we will use Python3.9, let's install it: 
+
+```
+pyenv install 3.9.0
+```
 
 ## Creating the virtual environment
 
