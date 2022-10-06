@@ -2,3 +2,4 @@ venv/
 docker-compose-solution.yml
 Solutions
 links.md
+.idea/
