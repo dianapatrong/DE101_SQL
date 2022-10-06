@@ -1,6 +1,6 @@
 # Python Lab2: Basics 
 
-### Set
+## Set
 * Sets are unordered.
 * Set elements are unique. Duplicate elements are not allowed.
 * A set itself may be modified, but the elements contained in the set must be of an immutable type.
@@ -31,7 +31,7 @@ my_list = [1, "Hello", 3.4]
 my_list = ["mouse", [8, 4, 6], ['a']]
 ```
 
-### Dictionary
+## Dictionary
 
 A dictionary consists of a collection of key-value pairs. Each key-value pair maps the key to its associated value.
 You can define a dictionary by enclosing a comma-separated list of key-value pairs in curly braces ({}). 
@@ -54,7 +54,7 @@ my_dict = dict({1:'apple', 2:'ball'})
 my_dict = dict([(1,'apple'), (2,'ball')])
 ```
 
-### Tuple
+## Tuple
 
 A tuple in Python is similar to a list. The difference between the two is that we cannot change the  elements of a tuple 
 once it is assigned whereas we can change the elements of a list.
@@ -77,10 +77,10 @@ my_tuple = (1, "Hello", 3.4)
 my_tuple = ("mouse", [8, 4, 6], (1, 2, 3))
 ```
 
-## Exercises
+# Exercises
 All exercises must be solved using plain python (no libraries at this moment).
 
-### Exercise 1
+## Exercise 1
 Given two integer numbers return their product only if the product is equal to or lower than 1000, else return their sum.
 
 ```
@@ -91,7 +91,7 @@ Input: 40,30
 Output: 70 
 ```
 
-### Exercise 2
+## Exercise 2
 Given a student with their marks, create a dictionary and find the average of score of each student. 
 
 * Peter: 25,36,47,45
@@ -103,7 +103,7 @@ Given a student with their marks, create a dictionary and find the average of sc
 Output: [38, 68, 50, 49]
 ```
 
-### Exercise 3
+## Exercise 3
 Given a non-empty string, write a python function to check if the string is palindrome or not. 
 A string is said to be palindrome if the reverse of the string is the same as string. 
 
@@ -116,10 +116,10 @@ Output : False
 ```
 
 
-### Exercise 4
+## Exercise 4
 Write a python function to check if a number is even or odd
 
-### Exercise 5
+## Exercise 5
 Given a dictionary in Python, write a Python program to find the sum of all items in the dictionary.
 
 ```
@@ -130,7 +130,7 @@ Input : {'x': 25, 'y':18, 'z':45}
 Output : 88
 ```
 
-### Exercise 6
+## Exercise 6
 Write a program to iterate a given list and count the occurrence of each element,  create a dictionary to show the count of each element.
 
 ```
@@ -138,7 +138,7 @@ Input: [11, 45, 8, 11, 23, 45, 23, 45, 89]
 Output: {11: 2, 45: 3, 8: 1, 23: 2, 89: 1}
 ```
 
-### Exercise 7
+## Exercise 7
 Iterate a given list and check if a given element exists as a key's value in a dictionary. If not, delete it from the list.
 
 ```
