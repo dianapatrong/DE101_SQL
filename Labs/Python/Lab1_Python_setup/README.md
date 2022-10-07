@@ -55,6 +55,11 @@ $ pyenv local lab1
 > Tip: When the virtual environment is activated you can see the name at the beginning of the command line
 > i.e. (lab1) ~/DE101_SQL/Labs/Python/Lab1_Python_setup 
 
+## Deactivate the virtual environment 
+
+```
+pyenv deactivate
+```
 
 ## ✏️ Exercise
 
