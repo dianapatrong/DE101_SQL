@@ -111,3 +111,19 @@ Hello World from python version 3.9.0 (default, Oct  6 2022, 00:08:15)
 
 Process finished with exit code 0
 ```
+
+
+# Command Line
+
+You can always run your scripts from the command line with the python command: 
+
+```
+python <path_to_script>
+```
+
+Example:
+```
+$ python test.py 
+Hello World from python version 3.9.0 (default, Oct  6 2022, 00:08:15) 
+[Clang 12.0.5 (clang-1205.0.22.11)]
+```
