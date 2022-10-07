@@ -19,7 +19,6 @@ Follow the provided tutorials depending your OS to install **pyenv** in your mac
 
 > Don't forget to add pyenv to your path as showed in the tutorials
 
-
 ## Using pyenv to install python
 There are multiple versions of python where you can choose from, for these series of labs we will use Python3.9, let's install it: 
 
@@ -61,14 +60,48 @@ $ pyenv local lab1
 pyenv deactivate
 ```
 
-## ✏️ Exercise
+# Jupyter Notebooks
 
-Install python version 3.7 and create a virtual environment with that version.
+JupyterLab is a web-based interactive development environment for notebooks, code, and data. It integrates code and its 
+output into a single document where you can run code, display the output, add explanations, formulas, and charts to make your work more
+transparent, understandable, repeatable and shareable. 
 
+We will use a Docker container to run Jupyter notebooks throughout the Python for Data Engineering course. 
+ 
+The following command pulls the `jupyter/datascience-notebook` image from Docker Hub if it is not already present 
+on the local host. It then starts a container running a Jupyter Server and exposes the server on port `8888` of the host machine.
 
-# IDE integration
+```
+$ docker run -it --rm --name jupyternotebook -p 8888:8888 -v "${PWD}/notebooks":/home/jovyan  jupyter/datascience-notebook
+```
 
-## Pycharm 
+The use of the `-v` flag in the command mounts the current working directory on the host (`${PWD}/notebooks` in the example command) 
+as `/home/jovyan` in the container. The server logs appear in the terminal.
+
+Visiting `http://<hostname>:8888/?token=<token>` in a browser loads JupyterLab, where:
+
+* `hostname` is the name of the computer running Docker
+* `token` is the secret token printed in the console.
+
+Due to the usage of the flag `--rm` Docker automatically cleans up the container and removes the file system when the 
+container exits, but all the files in the container will remain intact on the host.
+
+## Create a new notebook
+
+To create a new notebook click on the plus sign, the **Launcher** will open, then select **Python 3 (ipykernel)**:
+
+![Notebook Launcher](documentation_images/notebookLauncher.png)
+
+Print and run `Hello World`, then save the file: 
+
+![Jupyter Notebook](documentation_images/myFirstNotebook.png)
+
+You will be able to see the notebook in your machine under `Lab1_Python_setup/notebooks` folder. 
+
+# Pycharm
+
+PyCharm is a super popular Python IDE, you are welcome to use it throughout these labs, to run your scripts using virtual 
+environments you can follow the installation below. 
 
 In this folder there is a python script [test.py](test.py), we will setup our environment with Pycharm so we can run it
 directly from there. 
