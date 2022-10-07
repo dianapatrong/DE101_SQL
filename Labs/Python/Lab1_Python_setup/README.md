@@ -72,6 +72,7 @@ The following command pulls the `jupyter/datascience-notebook` image from Docker
 on the local host. It then starts a container running a Jupyter Server and exposes the server on port `8888` of the host machine.
 
 ```
+$ cd Labs/Python
 $ docker run -it --rm --name jupyternotebook -p 8888:8888 -v "${PWD}/notebooks":/home/jovyan  jupyter/datascience-notebook
 ```
 

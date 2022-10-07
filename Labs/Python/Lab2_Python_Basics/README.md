@@ -1,5 +1,12 @@
 # Python Lab2: Basics 
 
+This lab includes a series of exercises that you can solve using Jupyter Notebook: 
+
+```
+$ cd Labs/Python
+$ docker run -it --rm --name jupyternotebook -p 8888:8888 -v "${PWD}/notebooks":/home/jovyan  jupyter/datascience-notebook
+```
+
 ## Set
 * Sets are unordered.
 * Set elements are unique. Duplicate elements are not allowed.
@@ -145,4 +152,3 @@ Iterate a given list and check if a given element exists as a key's value in a d
 Input: [47, 64, 69, 37, 76, 83, 95, 97], {'Jhon':47, 'Emma':69, 'Kelly':76, 'Jason':97}
 Output: [47, 69, 76, 97]
 ```
-
