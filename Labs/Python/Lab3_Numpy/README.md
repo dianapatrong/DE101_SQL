@@ -1,11 +1,16 @@
 # Python Lab3: Numpy
 
-Create and activate virtual environment 
+## Create and activate the virtual environment 
+
+```
 pyenv virtualenv 3.9.0 lab3 
 pyenv local lab3
+```
 
-Install numpy 
+## Install numpy 
+```
 pip install numpy==1.23.3 
+```
 
 # Exercises
 
