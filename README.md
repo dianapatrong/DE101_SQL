@@ -13,3 +13,4 @@
 ## Module 2 - Python 🐍
 * [Lab 1: Python Environment Setup](Labs/Python/Lab1_Python_setup/)
 * [Lab 2: Python Basics](Labs/Python/Lab2_Python_Basics/)
+* [lab 3: Numpy](Labs/Python/Lab3_Numpy/)
